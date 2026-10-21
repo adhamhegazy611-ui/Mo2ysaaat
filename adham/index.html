@@ -57,17 +57,28 @@ tbody tr.late td:first-child{border-right:4px solid #b91c1c}
 #lgn .b{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:26px;max-width:360px;width:100%;box-shadow:0 10px 30px rgba(15,23,42,.12)}
 #lgn h1{margin:0 0 4px;font-size:21px}#lgn p{margin:0 0 16px;color:var(--mu);font-size:14px}
 #lgn input{width:100%;margin-bottom:10px;padding:11px 12px;font-size:16px}#lgn button{width:100%;padding:11px;font-size:16px}
-#lerr{color:var(--redtx);min-height:20px;font-size:14px;margin-bottom:8px}</style>
+#lerr{color:var(--redtx);min-height:20px;font-size:14px;margin-bottom:8px}
+#lgn .sw{text-align:center;margin-top:12px;font-size:14px}#lgn .sw a{color:var(--ac);font-weight:600;text-decoration:none;cursor:pointer}
+#smsg{min-height:20px;font-size:14px;margin-bottom:8px;color:var(--redtx)}#smsg.ok{color:var(--ok)}
+.mdl{position:fixed;inset:0;z-index:200;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.mdl .bx{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:16px;padding:22px;max-width:420px;width:100%;max-height:85vh;overflow:auto;box-shadow:0 10px 30px rgba(15,23,42,.25)}
+.mdl h2{margin:0 0 12px;font-size:18px}.mdl input{width:100%;margin-bottom:10px;padding:10px 12px;font-size:15px}.mdl .mm{min-height:20px;font-size:14px;margin-bottom:8px;color:var(--redtx)}.mdl .mm.ok{color:var(--ok)}
+.mdl .ac{display:flex;gap:8px}.mdl .ac button{flex:1;padding:10px}
+.rq{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin-bottom:8px}.rq b{font-size:15px}.rq small{display:block;color:var(--mu)}.rq .ac{flex:none}.rq .ac button{padding:6px 12px;flex:none}
+.bdg{background:var(--redtx);color:#fff;border-radius:99px;padding:1px 8px;font-size:12px;margin-inline-start:6px}</style>
 </head><body><div id="lgn"><div class="b"><h1>📋 متابعة المقايسات</h1><p>سجّل الدخول للمتابعة</p>
 <input id="lu" placeholder="اسم المستخدم" autocomplete="username" autocapitalize="none"><input id="lp" type="password" placeholder="كلمة المرور" autocomplete="current-password">
-<div id="lerr"></div><button class="p" id="lb">دخول</button></div></div>
+<div id="lerr"></div><button class="p" id="lb">دخول</button><div class="sw"><a id="tosu">إنشاء حساب جديد</a></div></div>
+<div class="b" id="sgn" style="display:none"><h1>📋 إنشاء حساب جديد</h1><p>الطلب بيوصل للمسؤول، وبعد موافقته تقدر تدخل</p>
+<input id="su" placeholder="اسم المستخدم (حروف إنجليزي وأرقام)" autocomplete="username" autocapitalize="none"><input id="sp" type="password" placeholder="كلمة المرور (٨ حروف على الأقل)" autocomplete="new-password"><input id="sp2" type="password" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password">
+<div id="smsg"></div><button class="p" id="sgb">إرسال طلب إنشاء الحساب</button><div class="sw"><a id="tolg">رجوع لتسجيل الدخول</a></div></div></div>
 <div class="w">
 <header class="hd"><h1>📋 متابعة المقايسات</h1><p>ابحث عن أي مقايسة فورًا، وتابع المتأخر منها باللون الأحمر</p></header>
 <div class="card stats"><div class="st"><b id="s1">0</b><span>إجمالي المقايسات</span></div><div class="st"><b id="s2" style="color:var(--redtx)">0</b><span>تجاوزت ٥ أيام</span></div><div class="st"><b id="s3">0</b><span>لم تُسلَّم بعد</span></div><div class="st"><b id="s4">0</b><span>نتائج البحث</span></div></div>
 <div class="card"><input id="q" placeholder="ابحث بالشركة أو المشروع أو ك أو الملاحظات…" autocomplete="off">
 <div class="bar"><select id="flt"><option value="all">الكل</option><option value="late">المتجاوزة ٥ أيام فقط</option><option value="open">غير المسلَّمة فقط</option><option value="added">المضافة حديثًا</option></select>
 <select id="yr"><option value="">كل السنوات</option></select><button class="p" id="addb">+ إضافة مقايسة</button><button id="saveall">💾 حفظ البيانات</button><button id="exportExcel">⬇️ تحميل Excel</button><span class="mu" id="sync"></span></div></div>
-<div class="card fm" id="fm" hidden><h2 class="fh">إضافة مقايسة جديدة</h2><div class="fs">الحقول المعلّمة بـ * مطلوبة. المدة المسموحة ٥ أيام من تاريخ الاستلام.</div><div class="f">
+<div class="card fm" id="fm" hidden><h2 class="fh">إضافة مقايسة جديدة</h2><div class="fs">الحقول المعلّمة بـ * مطلوبة. لو المدة من تاريخ الاستلام لتاريخ التسليم زادت عن ٥ أيام، الصف هيظهر باللون الأحمر.</div><div class="f">
 <label>الشركة <span class="req">*</span><input id="fc" placeholder="اسم الشركة"></label><label>ك<input id="fb" placeholder="ك" value="ك "></label>
 <label class="w2">المشروع <span class="req">*</span><input id="fp" placeholder="اسم المشروع"></label>
 <label>تاريخ الاستلام من المندوب <span class="req">*</span><input type="date" id="fr"></label><label>تاريخ التسليم لمكتب المقايسات<input type="date" id="fd"></label>
@@ -97,11 +108,12 @@ function mkShim(){return{collection:()=>({
 const $l=id=>document.getElementById(id);
 async function enter(session){
  const{data:m}=await sb.from('app_users').select('username,role').maybeSingle();
- if(!m){await sb.auth.signOut();$l('lerr').textContent='الحساب ده مش مفعّل، كلّم المسؤول';return}
+ if(!m){await sb.auth.signOut();$l('lerr').textContent='حسابك لسه مستني موافقة المسؤول';return}
  document.body.classList.add('in');$l('lgn').remove();
  const hd=document.querySelector('.hd');
  if(hd){const b=document.createElement('button');b.textContent='تسجيل الخروج ('+m.username+')';b.style.cssText='margin-top:10px';
   b.onclick=async()=>{await sb.auth.signOut();location.reload()};hd.appendChild(b)}
+ if(typeof setupAccountTools==='function')setupAccountTools(m);
  resolveDb(mkShim());
  try{const r=await fetch('/api/base',{headers:{Authorization:'Bearer '+session.access_token}});
   if(!r.ok)throw new Error(r.status);const rows=await r.json();BASE.push(...rows);build()}
@@ -113,6 +125,7 @@ async function doLogin(){
  $l('lb').disabled=true;$l('lerr').textContent='';
  const{data,error}=await sb.auth.signInWithPassword({email:u+SB_DOM,password:p});
  $l('lb').disabled=false;
+ if(error&&/not confirmed/i.test(error.message||'')){$l('lerr').textContent='حسابك لسه مستني موافقة المسؤول';return}
  if(error||!data.session){$l('lerr').textContent='اسم المستخدم أو كلمة المرور غلط';return}
  enter(data.session)
 }
@@ -120,6 +133,72 @@ document.addEventListener('DOMContentLoaded',async()=>{
  $l('lb').onclick=doLogin;$l('lp').onkeydown=e=>{if(e.key==='Enter')doLogin()};$l('lu').onkeydown=e=>{if(e.key==='Enter')$l('lp').focus()};
  const{data}=await sb.auth.getSession();if(data.session)enter(data.session);
 });
+</script>
+<script>
+/* إنشاء حساب / تغيير كلمة المرور / طلبات الحساب (للمسؤولين فقط) */
+const UN_RE=/^[a-z0-9._-]{3,30}$/;
+const escH=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function openModal(html){const m=document.createElement('div');m.className='mdl';m.innerHTML='<div class="bx">'+html+'</div>';
+ m.addEventListener('mousedown',e=>{if(e.target===m)m.remove()});document.body.appendChild(m);return m}
+document.addEventListener('DOMContentLoaded',()=>{
+ const a=document.getElementById('lgn'),box=a&&a.querySelector('.b'),sg=document.getElementById('sgn');if(!box||!sg)return;
+ const g=i=>document.getElementById(i),msg=(t,ok)=>{g('smsg').textContent=t;g('smsg').className=ok?'ok':''};
+ g('tosu').onclick=()=>{box.style.display='none';sg.style.display='block';msg('')};
+ g('tolg').onclick=()=>{sg.style.display='none';box.style.display='block'};
+ g('sgb').onclick=async()=>{
+  const u=g('su').value.trim().toLowerCase(),p=g('sp').value,p2=g('sp2').value;
+  if(!UN_RE.test(u))return msg('اسم المستخدم لازم يكون من ٣ لـ ٣٠ حرف إنجليزي أو أرقام (ويسمح بـ . _ -)');
+  if(p.length<8)return msg('كلمة المرور لازم تكون ٨ حروف على الأقل');
+  if(p!==p2)return msg('كلمتا المرور مش متطابقتين');
+  g('sgb').disabled=true;msg('');
+  try{const{data,error}=await sb.auth.signUp({email:u+SB_DOM,password:p,options:{data:{signup_request:'true'}}});
+   if(error){msg(/registered|already/i.test(error.message||'')?'اسم المستخدم ده موجود بالفعل':'تعذّر إرسال الطلب، جرّب تاني')}
+   else if(data&&data.user&&data.user.identities&&data.user.identities.length===0){msg('اسم المستخدم ده موجود بالفعل')}
+   else{await sb.auth.signOut();g('su').value=g('sp').value=g('sp2').value='';msg('✓ تم إرسال طلبك. هتقدر تدخل بعد موافقة المسؤول.',1)}
+  }catch(e){msg('تعذّر إرسال الطلب، جرّب تاني')}
+  g('sgb').disabled=false};
+});
+function setupAccountTools(m){
+ const hd=document.querySelector('.hd');if(!hd)return;
+ const row=document.createElement('div');row.style.cssText='margin-top:10px;display:flex;gap:8px;flex-wrap:wrap';
+ const pw=document.createElement('button');pw.textContent='🔑 تغيير كلمة المرور';pw.onclick=openPwModal;row.appendChild(pw);
+ if(m&&m.role==='admin'){const rq=document.createElement('button');rq.id='rqb';rq.innerHTML='👥 طلبات إنشاء الحساب';rq.onclick=openReqModal;row.appendChild(rq);refreshReqCount()}
+ hd.appendChild(row)}
+async function refreshReqCount(){
+ const b=document.getElementById('rqb');if(!b)return;
+ const{count}=await sb.from('signup_requests').select('user_id',{count:'exact',head:true}).eq('status','pending');
+ b.innerHTML='👥 طلبات إنشاء الحساب'+(count?'<span class="bdg">'+count+'</span>':'')}
+function openPwModal(){
+ const m=openModal('<h2>🔑 تغيير كلمة المرور</h2><input id="pw0" type="password" placeholder="كلمة المرور الحالية" autocomplete="current-password"><input id="pw1" type="password" placeholder="كلمة المرور الجديدة (٨ حروف على الأقل)" autocomplete="new-password"><input id="pw2" type="password" placeholder="أعد كتابة كلمة المرور الجديدة" autocomplete="new-password"><div class="mm" id="pwm"></div><div class="ac"><button class="p" id="pws">حفظ</button><button id="pwc">إلغاء</button></div>');
+ const g=i=>m.querySelector('#'+i),say=(t,ok)=>{g('pwm').textContent=t;g('pwm').className='mm'+(ok?' ok':'')};
+ g('pwc').onclick=()=>m.remove();
+ g('pws').onclick=async()=>{
+  const o=g('pw0').value,n=g('pw1').value,n2=g('pw2').value;
+  if(!o)return say('اكتب كلمة المرور الحالية');if(n.length<8)return say('كلمة المرور الجديدة لازم تكون ٨ حروف على الأقل');
+  if(n!==n2)return say('كلمتا المرور الجديدتان مش متطابقتين');if(n===o)return say('كلمة المرور الجديدة لازم تختلف عن الحالية');
+  g('pws').disabled=true;say('');
+  try{const{data:u}=await sb.auth.getUser(),em=u&&u.user&&u.user.email;
+   const{error:e1}=await sb.auth.signInWithPassword({email:em,password:o});
+   if(e1){say('كلمة المرور الحالية غلط');g('pws').disabled=false;return}
+   const{error:e2}=await sb.auth.updateUser({password:n});
+   if(e2){say('تعذّر تغيير كلمة المرور، جرّب تاني');g('pws').disabled=false;return}
+   say('✓ تم تغيير كلمة المرور',1);setTimeout(()=>m.remove(),1200)}
+  catch(e){say('تعذّر تغيير كلمة المرور، جرّب تاني');g('pws').disabled=false}}}
+async function openReqModal(){
+ const m=openModal('<h2>👥 طلبات إنشاء الحساب</h2><div id="rql">جارٍ التحميل…</div><div class="mm" id="rqm"></div><div class="ac"><button id="rqx">إغلاق</button></div>');
+ m.querySelector('#rqx').onclick=()=>m.remove();
+ const say=(t,ok)=>{const e=m.querySelector('#rqm');e.textContent=t;e.className='mm'+(ok?' ok':'')};
+ async function load(){const{data,error}=await sb.from('signup_requests').select('user_id,username,created_at').eq('status','pending').order('created_at');
+  const l=m.querySelector('#rql');if(error){l.textContent='تعذّر تحميل الطلبات';return}
+  l.innerHTML=data.length?data.map(r=>'<div class="rq"><div><b>'+escH(r.username)+'</b><small>'+new Date(r.created_at).toLocaleString('ar-EG')+'</small></div><div class="ac"><button class="p" data-a="ok" data-id="'+escH(r.user_id)+'">قبول</button><button data-a="no" data-id="'+escH(r.user_id)+'">رفض</button></div></div>').join(''):'<div class="mu" style="margin-bottom:10px">مفيش طلبات جديدة</div>';
+  refreshReqCount()}
+ m.addEventListener('click',async e=>{const t=e.target,id=t.dataset&&t.dataset.id;if(!id)return;
+  if(t.dataset.a==='no'&&!await ask('رفض الطلب ده؟ هيتمسح الحساب.'))return;
+  t.disabled=true;say('');
+  const{error}=await sb.rpc(t.dataset.a==='ok'?'approve_signup':'reject_signup',{p_user:id});
+  if(error){say('تعذّر تنفيذ العملية');t.disabled=false;return}
+  say(t.dataset.a==='ok'?'✓ تم قبول الحساب':'تم رفض الطلب',1);load()});
+ load()}
 </script>
 <script>const BASE=[];
 const GRACE=5,PS=100,DAY=864e5;
@@ -137,10 +216,14 @@ const today=(()=>{const d=new Date();return Date.UTC(d.getFullYear(),d.getMonth(
 const ts=s=>s?Date.parse(s+'T00:00:00Z'):NaN;
 const nrm=s=>String(s||'').toLowerCase().replace(/[\u064B-\u0652\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه');
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function mk(a,src,id){const r=ts(a[4]),d=ts(a[5]);const days=isNaN(r)?null:Math.round(((isNaN(d)?today:d)-r)/DAY);
+function mk(a,src,id){const r=ts(a[4]),d=ts(a[5]);const days=isNaN(r)||isNaN(d)?null:Math.round((d-r)/DAY);
 return{n:a[0],c:a[1],p:a[2],b:a[3],r:a[4],d:a[5],nt:a[6],f:a[7],l:a[8],pf:a[9],src,id,days,open:!a[5],overdue:days!==null&&days>GRACE,late:days!==null&&days>GRACE,k:nrm([a[1],a[2],a[3],a[6],a[7],a[0]].join(' '))}}
 let rows=[];
-function build(){const ov={};added.forEach(x=>{if(x.ov)ov[x.bi]=x});rows=added.filter(x=>!x.ov).map(x=>mk([x.n||'جديد',x.c,x.p,x.b,x.r,x.d,x.nt,'',x.l,x.pf],'a',x.id)).sort((a,b)=>(b.r||'').localeCompare(a.r||'')).concat(BASE.map((a,i)=>{const o=ov[i];if(o&&o.del)return null;return mk(o?[a[0],o.c,o.p,o.b,o.r,o.d,o.nt,a[7],o.l,o.pf]:a,'b','b'+i)}).filter(Boolean));
+function build(){const ov={};added.forEach(x=>{if(x.ov)ov[x.bi]=x});
+/* ترقيم تسلسلي: آخر رقم مقايسة موجودة، والمقايسات المضافة القديمة بدون رقم تاخد أرقام بالترتيب حسب وقت الإضافة */
+let mx=BASE.reduce((m,a)=>Math.max(m,+a[0]||0),0);added.forEach(x=>{if(!x.ov&&+x.n>0)mx=Math.max(mx,+x.n)});
+const lg={};added.filter(x=>!x.ov&&!(+x.n>0)).sort((a,b)=>String(a.id).localeCompare(String(b.id))).forEach(x=>{lg[x.id]=++mx});
+rows=added.filter(x=>!x.ov).map(x=>mk([+x.n>0?x.n:lg[x.id],x.c,x.p,x.b,x.r,x.d,x.nt,'',x.l,x.pf],'a',x.id)).sort((a,b)=>(b.r||'').localeCompare(a.r||'')).concat(BASE.map((a,i)=>{const o=ov[i];if(o&&o.del)return null;return mk(o?[a[0],o.c,o.p,o.b,o.r,o.d,o.nt,a[7],o.l,o.pf]:a,'b','b'+i)}).filter(Boolean));
 const ys=[...new Set(rows.map(r=>(r.r||'').slice(0,4)).filter(Boolean))].sort().reverse(),cur=$('yr').value;
 $('yr').innerHTML='<option value="">كل السنوات</option>'+ys.map(y=>`<option${y===cur?' selected':''}>${y}</option>`).join('');
 $('s1').textContent=(rows.reduce((m,r)=>Math.max(m,+r.n||0),0)+rows.filter(r=>r.src==='a'&&!(+r.n)).length).toLocaleString('ar-EG');$('s2').textContent=rows.filter(r=>r.late).length.toLocaleString('ar-EG');$('s3').textContent=rows.filter(r=>r.open).length.toLocaleString('ar-EG');apply()}
@@ -150,7 +233,7 @@ function colOk(r){for(const[k,ws]of cfs){const v=nrm(cv(r,k));for(const w of ws)
 function apply(){cfs=[...document.querySelectorAll('.fr input')].map(i=>[i.dataset.c,nrm(i.value).split(/\s+/).filter(Boolean)]).filter(x=>x[1].length);const t=nrm($('q').value).split(/\s+/).filter(Boolean),f=$('flt').value,y=$('yr').value;
 view=rows.filter(r=>(f==='all'||(f==='late'&&r.late)||(f==='open'&&r.open)||(f==='added'&&r.src==='a'))&&(!y||(r.r||'').startsWith(y))&&t.every(w=>r.k.includes(w))&&colOk(r));page=0;draw()}
 function draw(){const n=view.length,pc=Math.max(1,Math.ceil(n/PS));page=Math.min(page,pc-1);$('s4').textContent=n.toLocaleString('ar-EG');
-$('tb').innerHTML=view.slice(page*PS,page*PS+PS).map(r=>{const lt=r.days===null?'<span class="mu">بدون تاريخ</span>':r.late?`<span class="tag">${r.days} يوم – تجاوزت</span>`:`<span class="tag ok">${r.days} يوم</span>`;
+$('tb').innerHTML=view.slice(page*PS,page*PS+PS).map(r=>{const lt=r.days===null?(r.open?'<span class="mu">لم تُسلَّم بعد</span>':'<span class="mu">بدون تاريخ</span>'):r.late?`<span class="tag">${r.days} يوم – تجاوزت</span>`:`<span class="tag ok">${r.days} يوم</span>`;
 const dl=r.d&&isNaN(ts(r.d))?esc(r.d):r.d?esc(r.d):'<span class="tag">لم تُسلَّم</span>';
 const fl=r.f?String(r.f).split('\\').pop():'';
 return`<tr class="${r.late?'late':''}"><td>${esc(r.n)}</td><td>${esc(r.c)}</td><td>${esc(r.p)}</td><td>${esc(r.b)}</td><td>${esc(r.r)}</td><td>${dl}</td><td>${lt}</td><td>${esc(r.nt)}</td><td>${/^https?:\/\//i.test(r.l||'')?`<div><a class="lk" href="${esc(r.l)}" target="_blank" rel="noopener noreferrer">🔗 فتح رابط الملف</a></div>`:''}${(r.pf||'').startsWith('data:image/')||/^\/_blob\//.test(r.pf||'')?`<div><a class="lk" href="#" data-img="${esc(r.id)}">🖼️ عرض صورة المقايسة</a></div>`:''}${fl?`<div class="mu">${esc(fl)}</div>`:''}</td><td><button class="x ed" data-act="ed" data-id="${esc(r.id)}">تعديل</button> <button class="x" data-act="del" data-id="${esc(r.id)}">حذف</button></td></tr>`}).join('')||'<tr><td colspan="10" class="mu">لا توجد نتائج</td></tr>';
@@ -162,7 +245,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.c
 let tm;$('q').oninput=()=>{clearTimeout(tm);tm=setTimeout(apply,150)};$('flt').onchange=apply;$('yr').onchange=apply;
 document.querySelector('.fr').addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(apply,200)});
 $('cf').onclick=()=>{document.querySelectorAll('.fr input').forEach(i=>i.value='');apply()};
-function showHint(){const r=ts($('fr').value),d=ts($('fd').value),el=$('fh');if(isNaN(r)){el.textContent='';el.className='hint';return}const n=Math.round(((isNaN(d)?today:d)-r)/DAY),bad=n>GRACE;el.className='hint '+(bad?'bad':'good');el.textContent=bad?`⚠️ المدة ${n} يوم – تجاوزت ${GRACE} أيام وهتظهر باللون الأحمر`:`✓ المدة ${n} يوم – ضمن المسموح`}
+function showHint(){const r=ts($('fr').value),d=ts($('fd').value),el=$('fh');if(isNaN(r)){el.textContent='';el.className='hint';return}if(isNaN(d)){el.textContent='المدة هتتحسب أول ما تدخل تاريخ التسليم';el.className='hint';return}const n=Math.round((d-r)/DAY),bad=n>GRACE;el.className='hint '+(bad?'bad':'good');el.textContent=bad?`⚠️ المدة ${n} يوم – تجاوزت ${GRACE} أيام وهتظهر باللون الأحمر`:`✓ المدة ${n} يوم – ضمن المسموح`}
 ['fr','fd'].forEach(i=>$(i).addEventListener('change',showHint));
 $('addb').onclick=()=>{editing=null;setMode();['fc','fp','fb','fn','fd'].forEach(i=>$(i).value='');$('fb').value='ك ';$('ff').value='';pend=null;$('fcur').textContent='اختر صورة (سكرين شوت أو غيره) أو الصقها بـ Ctrl+V';$('fm').hidden=false;$('fr').value=new Date(today).toISOString().slice(0,10);showHint();$('fm').scrollIntoView();$('fc').focus()};
 let editing=null;
@@ -179,7 +262,7 @@ x.pf=editing?(editing.pf||''):'';const fi=pend||$('ff').files[0];
 if(fi){$('sv').disabled=true;$('sv').textContent='جارٍ تجهيز الصورة…';
 try{x.pf=await shrink(fi)}catch(e){alert('تعذّر قراءة الصورة، جرّب صورة تانية');$('sv').disabled=false;setMode();return}
 $('sv').disabled=false;setMode()}pend=null;
-if(editing){const e0=editing;if(e0.src==='a'){x.id=e0.id;x.n=e0.n}else{x.id='o'+e0.id.slice(1);x.ov=1;x.bi=+e0.id.slice(1)}}else{x.id='m'+Date.now().toString(36);x.n='جديد'}
+if(editing){const e0=editing;if(e0.src==='a'){x.id=e0.id;x.n=e0.n}else{x.id='o'+e0.id.slice(1);x.ov=1;x.bi=+e0.id.slice(1)}}else{x.id='m'+Date.now().toString(36);x.n=rows.reduce((m,r)=>Math.max(m,+r.n||0),0)+1}
 await put(x);
 ['fc','fp','fb','fn','fd'].forEach(i=>$(i).value='');$('fb').value='ك ';$('ff').value='';$('fm').hidden=true;editing=null;setMode()};
 $('tb').onclick=async e=>{const t=e.target,id=t.dataset&&t.dataset.id;if(!id)return;const r=rows.find(x=>x.id===id);if(!r)return;
